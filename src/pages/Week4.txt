@@ -1,0 +1,75 @@
+Q.1
+What is a controlled component in React? Write a controlled <input> where the value is stored in useState and updates on every keystroke. Why is this called 'controlled' — what would an uncontrolled input look like instead?
+
+A controled component is a form element e.g input, select etc, whose value is driven by State and updated via React.
+
+import { useState } from "react";
+
+function Form() {
+  const [name, setName] = useState("");
+
+  return (
+    <input
+      type="text"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+    />
+  );
+}
+
+It is called controlled because the input is controlled by React state, not the browser.
+
+This how an uncontrolled componenet looks like
+import { useRef } from "react";
+
+function App() {
+  const countRef = useRef(0);
+
+  const increase = () => {
+    countRef.current += 1;
+    console.log(countRef.current);
+  };
+
+  return <button onClick={increase}>Click</button>;
+}
+
+Q.2
+Write a sign-up form with three fields: username, email, and password. Use ONE handleChange function to handle all three inputs. Show how the [e.target.name] computed property key makes this possible. Remember to call e.preventDefault() on submit.
+
+Q.3
+Show all four ways to conditionally render content in JSX: (1) && short-circuit, (2) ternary operator, (3) if/else before the return, (4) early return. For each, write a small example showing when you would choose that approach.
+
+a. AND Operator (&&)
+{LoggedIn && <p>Welcome</p>} 
+Use when you want to show something or show nothing
+
+b. Ternary Operator (?)
+{isLoggedIn ? <button>Logout</button> : <button>Login</button>}
+Use when you have two alternatives
+
+c. if/else
+if (role === "admin") {
+  return <p>Welcome Admin, you have full access</p>
+} else if (role === "user") {
+  return <p>Welcome User</p>
+} else {
+  return <p>Access Denied</p>
+}
+
+d.
+function Profile() {
+  const user = { name: "Tibby" };
+
+  if (!user) return null;
+
+  return <p>Welcome, {user.name}</p>;
+}
+
+Use when you want to block the whole component from rendering if a condition isn't met.
+
+Q.4
+What is wrong with this code? {0 && <p>Hello</p>}. What does React render and why? How do you fix it so nothing renders when the value is 0? Give the corrected version.
+
+{!0 && <p>Hello</p>}. 
+
+
