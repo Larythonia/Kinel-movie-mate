@@ -1,0 +1,45 @@
+Q1 - Organise these files into a feature-based folder structure under src/: Button.jsx, useAuth.js, LoginPage.jsx, formatDate.js, UserCard.jsx, AuthContext.jsx, MovieCard.jsx, useMovies.js. Explain why feature-based structure is better than grouping all components in one folder.
+
+ANS
+src/
+│
+├── features/
+│   ├── auth/
+│   │   ├── AuthContext.jsx
+│   │   ├── useAuth.js
+│   │   └── LoginPage.jsx
+│   │
+│   ├── movies/
+│   │   ├── MovieCard.jsx
+│   │   └── useMovies.js
+│   │
+│   └── users/
+│       ├── UserCard.jsx
+│
+├── components/
+│   └── Button.jsx
+│
+├── utils/
+│   └── formatDate.js
+
+Feature based structure is better because;
+1. Everything related is grouped together
+2. Easier to scale
+3. Easier maintenance
+4. Better teamwork
+5. More realistic (industry standard)
+
+Q2 - What naming conventions do React components use? What about custom hooks? What about utility functions? Why does a custom hook MUST start with 'use'? Give one example of what goes wrong if it does not.
+
+ANS
+React components use PascalCase
+E.g function MovieCard() {}
+
+Custom hooks use camelCase but MUST start with use
+E.g useAuth()
+
+Utility functions use normal camelCase:
+E.g fetchData()
+
+Why custom hooks start with use is so that React will correctly detect a hook
+Your code will break if your hook does not start with use. E.g hookEffect is not a correct hook.
