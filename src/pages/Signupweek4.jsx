@@ -28,12 +28,12 @@ function Signupweek4() {
   };
 
   return (
-    <div className="flex justify-center items-center bg-red-100 min-h-screen">
-      <div className="bg-white p-10 my-10 w-full max-w-sm rounded-lg shadow-lg">
+    <div className="flex justify-start items-start bg-black min-h-screen">
+      <div className="bg-white p-10 m-auto w-full max-w-sm rounded-lg shadow-lg">
         {/*Haeder */}
         <h2 className="font-bold text-red-500 pb-5">Welcome Back</h2>
 
-        <div>
+        <div className="bg-red-100 p-5 rounded-lg">
           <form onSubmit={onSubmit}>
             <div className="flex flex-col gap-1 mb-4 ">
               <label>Username</label>

@@ -1,0 +1,51 @@
+Q1- What is useEffect used for? Explain what the dependency array does — what happens when you pass [] vs [userId] vs nothing at all? Write a useEffect that fetches a list of movies from an API URL when the component first loads.
+
+ANS
+useEffect is a React hook used to perforrm side effects usually outside the render cycle which includes; fetching data(API), subscriptions, setting timers, updating the DOM and listening to events.
+
+The dependency array is the second useEffect's argument that tells React when to re-run or re-render the effect.
+When you pass an empty array [], the componenents runs only when it firdt loads
+When you have values in an array e.g [userId], it runs on first render and when the userId changes.
+No array runs after every render.
+
+  Q2 -Explain the race condition problem in useEffect. If a user types quickly and multiple fetch requests fire, what goes wrong without a fix? Write the 'cancelled flag' solution that prevents setting state from a stale request, including the cleanup function.
+
+  ANS
+  A race condition happens when the correctness of your program depends on the order or timing of independent events, and that order is not guaranteed.The name comes from the idea that two or more processes are "racing" to finish, and the wrong one winning causes a bug.
+
+  The slowest respond will win, not the fastest. 
+  Example;
+  User types "react"
+→ 4 fetches fire: "r", "re", "rea", "react"
+→ "react" responds first ✅ → UI shows react results
+→ "r" responds last   💥 → UI overwrites with r results
+The user typed "react" but sees results for "r" — because there's nothing controlling which response gets to call setResults last.
+
+Q13 - Every component that fetches data must handle three states. Name them all and write JSX that shows a <Spinner /> while loading, an <ErrorMessage /> if there is an error, and a grid of results when the data loads successfully
+
+ANS
+The three states are;
+Loading state
+Error state
+Success state
+
+Q4 - What is the difference between GET, POST, PUT, and DELETE requests? Write a fetch() call that sends a POST request to '/api/movies' with a body of { title: 'Dune', rating: 7.8 } as JSON. Include the correct headers.
+
+ANS
+Key differences
+GET — only retrieves data
+POST — Creates data
+PUT — Udates data (full update)
+DELETE — deletes data
+
+Q5 - Why does fetch() not throw an error when a server returns a 404 status? Write code that checks response.ok after a fetch call and throws a custom error message if the request failed. Then handle it in a try/catch block.
+
+ANS
+fetch() does not throw error for 404 because the request was successful, it only throws errors for:
+Network failures
+No internet
+Request blocked
+
+
+
+
