@@ -15,6 +15,8 @@ function Week5() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("batman");
+  const [title, setTitle] = useState("");
+  const [rating, setRating] = useState("");
 
   useEffect(() => {
     let cancelled = false;
@@ -77,6 +79,10 @@ function Week5() {
 
       const data = await response.json();
       console.log("Movie Created:", data);
+
+      setTitle("");
+      setRating("");
+
     } catch (error) {
       console.log("POST Error:", error.message);
     }
@@ -84,9 +90,10 @@ function Week5() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-xl font-semibold">Loading...</p>
+       <div className="flex justify-center items-center h-screen">
+      <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full    animate-spin">
       </div>
+    </div>
     );
   }
 
@@ -97,6 +104,31 @@ function Week5() {
   return (
     <div className="p-6">
       <h1 className="font-bold text-xl">Movie App</h1>
+
+       <input
+        type="text"
+        placeholder="Movie title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        className="border p-2 rounded"
+      />
+
+      <input
+        type="number"
+        placeholder="Movie rating"
+        value={rating}
+        onChange={(e) => setRating(e.target.value)}
+        className="border p-2 rounded"
+      />
+
+      <button
+        type="button"
+        onClick={createMovie}
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        Submit
+      </button>
+
       <div className="grid grid-cols-3 gap-4 mt-6">
         {movies.map((movie) => (
           <div key={movie.id} className="border p-3 rounded">
