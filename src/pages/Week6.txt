@@ -43,3 +43,70 @@ E.g fetchData()
 
 Why custom hooks start with use is so that React will correctly detect a hook
 Your code will break if your hook does not start with use. E.g hookEffect is not a correct hook.
+
+Q3 - What is prop drilling? Write an example showing a search query state being passed through App → Page → Section → SearchBar — four levels deep. Then explain what problem this creates and how lifting state or Context solves it.
+
+ANS
+Prop drilling is the process of passing data through multiple nested components using props, even when intermediate components do not need the data.
+
+In the example App → Page → Section → SearchBar, the searchQuery state is passed through four levels so that SearchBar can access it.
+
+This creates problems such as:
+
+unnecessary prop passing
+harder maintenance
+tightly coupled components
+cluttered intermediate components
+
+Lifting state solves this by keeping the state in the nearest common parent component that needs it.
+
+Context solves this by allowing components to access shared data directly without passing props through every intermediate component.
+
+Q4 - Draw or describe the data flow when a user types in a SearchBar that is a child of a Browse page. Where does the state live? How does the typed value get from SearchBar up to Browse? How does Browse pass the results back down?
+
+ANS
+The state usually lives in the parent component, Browse.
+
+Flow:
+
+The user types into SearchBar
+SearchBar triggers an onChange event
+A callback function updates the state in Browse
+Browse re-renders with the updated query
+Browse filters or fetches results
+The results are passed back down to child components as props
+
+React follows one-way data flow:
+
+parent sends data to child through props
+child communicates back using callback functions
+
+Q5 - What is an absolute import alias? Write the vite.config.js code to configure '@' to point to the src/ folder. Then show the difference between a messy relative import and the clean aliased version.
+
+ANS
+An absolute import alias is a shortcut path used to simplify imports, instead of long relative paths.It allows cleaner imports.
+
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+});
+
+Difference between relative and aliased imports
+
+Messy relative import:
+
+import Button from "../../../../components/Button";
+
+Clean aliased import:
+
+import Button from "@/components/Button";
+
+
