@@ -1,7 +1,10 @@
 import Header from "../component/Header";
 import Button from "../component/Button";
+import { useAuth } from "../context/AuthContext";
 
 function Home()  {
+  const { user } = useAuth();
+  const { watchlist } = useWatchlist();
   const HomeCardsData = [
     {
       icon: "🔥",
@@ -59,8 +62,9 @@ function Home()  {
           <span className="text-8xl mt-20">🎬</span>
           {/* <Headline /> */ }
         <div className="max-w-2xl space-y-4">
+          <p>This is user from {user?.email}</p>
           <h1 className="text-5xl font-bold leading-tight">
-            Your personal{""}<span className="text-red-500">movie companion</span>
+            Your personal{""}<span className="text-red-500"> movie companion</span>
           </h1>
           <p className="text-xl text-gray-400 leading-relaxed">
             Discover trending films, search by title, save movies to your watchlist, and never forget what to watch next.
@@ -97,6 +101,16 @@ function Home()  {
             </article>
           ))}
         </div>
+
+        {watchlist?.map((movie) => (
+          <div>
+            <h3>{movie?.name}</h3>
+           <p>{movie?.genre}</p>
+           <p>{movie?.releaseYear}</p>
+          </div>
+          
+
+        ))} 
 
     </main>
 

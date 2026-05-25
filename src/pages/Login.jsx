@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Button from "../component/Button";
+import Modal from "../component/Modal";
+import { useAuth } from "../context/AuthContext";
 
 // This is a placeholder Login component. You can expand it with actual form fields and logic.
 
@@ -7,14 +9,24 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [buttonLabel, setButtonLabel] = useState("Login")
+  const [btnSubText, setBtnSubText] = useState("click")
 
   const isAdmin = true; // Change to true to test admin view
 
-  const handleSubmit = () => {
- 
+     // 3. Consume the context
+    const { login } = useAuth(); 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+       
     // Handle login logic here
     firstName === user.name && email === user.email
+     login(email, password)
+     setButtonLabel("Logout")
+
   }
+
 
 const user = {
   name: "TiGirl",

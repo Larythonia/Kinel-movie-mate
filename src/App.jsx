@@ -5,13 +5,15 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Signupweek4 from "./pages/Signupweek4";
 import Week5 from "./pages/Week5";
+import { AuthProvider } from "./context/AuthContext"
 
 function App() {
 
   return (
-    <>
-    <Week5 />
-    </>
+    <AuthProvider>
+      <Home />
+      <Login />
+    </AuthProvider>
   );
 }
 
